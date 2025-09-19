@@ -13,6 +13,7 @@
  <h1> Hello, Welcome <script> document.write(user_name)
  </script>!
   </h1>
+
 </div>
 <div id="profile-picture">
  <img src=images/Profile-Picture.jpeg width=500px height=500px />
@@ -35,6 +36,16 @@
       </ol>
     </p>
   </div>
+</div>
+<div id="copyright">
+  <script>
+// This creates a div id for a new div that will be edited via the external css file.
+var today = new Date();
+// This creates a new variable that is today's date.
+var year = today.getFullYear();
+// This creates a new variable "year" that uses the previous date variable.
+document.writeln("Copyright &copy; " + year);
+</script>
 </div>
 </body>
 </html>
