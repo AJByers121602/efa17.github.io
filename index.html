@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css"integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="">
   <link rel="stylesheet" type="text/css" href="css/map_styles.css">
   <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
-  <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css">
+   <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css">
   <script src="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js"></script>
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
@@ -73,6 +73,41 @@ bbox.getSouthWest()
 ]);
 mymap.fitBounds(poly.getBounds());
 }).addTo(mymap);
+
+var taj = L.circleMarker([27.174961, 78.042385],{
+  color: 'orange',
+  radius: 5
+}).addTo(mymap).bindPopup('<h1 style="color:#2c7bb6; font-size:14px;font-weight: bold;">India&#39;s Taj Mahal</h1><p style="font-size:8px;">Taj Mahal, white marble mausoleum complex in Agra, western Uttar Pradesh state, northern India. The Taj Mahal was built by the Mughal emperor Shah Jahan (reigned 1628–58) to immortalize his empress consort Mumtaz Mahal </p><img src="./images/taj.webp" style="width:50px">');
+
+var china = L.circleMarker([40.334245, 116.477652],{
+  color: 'pink',
+  radius: 5
+}).addTo(mymap).bindPopup('<h1 style="color:#2c7bb6; font-size:14px;font-weight: bold;">Great Wall of China</h1><p style="font-size:8px;">Great Wall of China, extensive bulwark erected in ancient China, one of the largest building-construction projects ever undertaken. Built over some two millennia across northern China and southern Mongolia. </p><img src="./images/GWOC.webp" style="width:50px">');
+
+var petra = L.circleMarker([30.328611, 35.441944],{
+  color: 'black',
+  radius: 5
+}).addTo(mymap).bindPopup('<h1 style="color: #2c7bb6; font-size: 14px;font-weight: bold;">Petra in Jordan</h1><p style="font-size: 8px;">The ruins of the ancient city Petra are in southwest Jordan. Petra was built on a terrace, pierced from east to west by the Wadi Mūsā (the Valley of Moses).</p><img src="./images/petra.jpg" style="width:50px">');
+
+var brazil = L.circleMarker([-22.951389, -43.2108334],{
+  color: 'yellow',
+  radius: 5
+}).addTo(mymap).bindPopup('<h1 style="color: #2c7bb6; font-size: 14px;font-weight: bold;">Christ the Redeemer</h1><p style="font-size: 8px;">The statue of Christ the Redeemer was completed in 1931 and stands 98 feet (30 metres) tall, its horizontally outstretched arms spanning 92 feet (28 metres).</p><img src="./images/ctr.webp" style="width:50px">');
+
+var machu = L.circleMarker([-13.163056, -72.545556],{
+  color:'red',
+  radius: 5
+}).addTo(mymap).bindPopup('<h1 style="color: #2c7bb6; font-size: 14px;font-weight: bold;">Peru&#39;s Machu Pichu</h1><p style="font-size: 8px;">Machu Picchu, site of ancient Inca ruins located about 50 miles (80 km) northwest of Cuzco, Peru, in the Cordillera de Vilcabamba of the Andes Mountains.</p><img src="./images/machu.webp" style="width:100px">');
+
+var mex = L.circleMarker([20.682778, -88.569167],{
+  color: 'cyan',
+  radius: 5
+}).addTo(mymap).bindPopup('<h1 style="color: #2c7bb6; font-size: 14px;font-weight: bold;">Mexico&#39;s Chichen Itza Pyramid</h1><p style="font-size: 8px;">Chichén Itzá, in south-central Yucatán state, Mexico. It is thought to have been a religious, military, political, and commercial center that at its peak would have been home to 35,000 people.</p><img src="./images/chichen.webp" style="width:50px">');
+
+var rome = L.circleMarker([41.890169, 12.492269],{
+  color: 'green',
+  radius: 5
+}).addTo(mymap).bindPopup('<h1 style="color: #2c7bb6; font-size: 14px;font-weight: bold;">The Colosseum in Rome</h1><p style="font-size: 8px;">Colosseum, giant amphitheater built in Rome under the Flavian emperors. Construction of the Colosseum was begun sometime between 70 and 72 ce during the reign of Vespasian.</p><img src="./images/romec.webp" style="width:50px">');
 
   // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{}).addTo(mymap);
   // L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {maxZoom: 18, id: 'mapbox/dark-v10',accessToken: mapbox_access_token}).addTo(mymap);

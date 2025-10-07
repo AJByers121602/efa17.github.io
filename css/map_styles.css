@@ -1,5 +1,10 @@
-.leaflet-popup-content-wrapper,
+ .leaflet-popup-content-wrapper,
 .leaflet-popup-tip
 {
-background: yellow;
+height: 200px;
+width: 200px;
+max-width: 100%;
+}
+p
+{font-size:8px;
 }
