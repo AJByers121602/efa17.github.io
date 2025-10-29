@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content = "initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <title> Lab 7 Homework </title>
+  <link rel = "stylesheet" href = "https://js.arcgis.com/4.21/esri/themes/light/main.css"/>
+  <script src = "https://js.arcgis.com/4.21/"> </script>
+
+  <style>
+  html, body, #viewDiv {
+   padding: 0;
+   margin: 0;
+   height: 100%;
+   width: 100%;}
+  </style>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/FeatureLayer"
+    ], function (Map, MapView, FeatureLayer) {
+
+      // I created the basemap
+      const map = new Map({
+        basemap: "dark-gray-vector"
+      });
+
+      // This is the mapview to display the map
+      const view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-0.1276, 51.5072], // London
+        zoom: 10
+      });
+
+      // The hotels featureLayer
+      const hotelsLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/Hotels_London/FeatureServer/0",
+        outFields: ["*"],
+        popupTemplate: {
+          title: "{Name}",
+          content: `
+            <b>Star Rating:</b> {Stars}
+          `
+        }
+      });
+
+      // This adds the layer to the map
+      map.add(hotelsLayer);
+      // Adds filter box to the UI
+     const filterDiv = document.createElement("div");
+     filterDiv.className = "esri-widget";
+     filterDiv.innerHTML = `
+       <label for="starSelect"><b>Star Rating of Hotels:</b></label><br>
+       <select id="starSelect" style="width:100%; margin-top:5px;">
+         <option value="">Show All</option>
+         <option value="1">1 Star</option>
+         <option value="2">2 Stars</option>
+         <option value="3">3 Stars</option>
+         <option value="4">4 Stars</option>
+         <option value="5">5 Stars</option>
+       </select>
+     `;
+
+
+      // The filter box behavior
+      const starSelect = document.getElementById("starSelect");
+
+      starSelect.addEventListener("change", () => {
+        const selectedStar = starSelect.value;
+
+        if (selectedStar) {
+          // This is the star amount that you want to be displayed
+          hotelsLayer.definitionExpression = `Stars = ${selectedStar}`;
+        } else {
+          // Clears results that do not meet the selected stars amount
+          hotelsLayer.definitionExpression = "";
+        }
+      });
+    });
+  </script>
+ </head>
+<body>
+ <div id="page_title"style="background-color:Orange;padding:30px 100px;">
+   <h1 style="font-family: Arial, sans-serif;text-align:center;"> London Hotels Star Ratings</h1>
+ </div>
+  <div id="viewDiv"style="z-index:0;">
+
+    <div id="dropDown"style="z-index: 1; display: block; padding: 12px 16px;Top-right;">
+      <button onclick="toggleList()">Show/Hide List</button>
+
+      <ul id="myList" style="display: none;">
+        <li><a href= "basemap_gallery.html"target="_blank">Basemap Gallery</a></li>
+        <li><a href= "dynamic_layers.html"target="_blank">Dynamic Layers</a></li>
+        <li><a href= "on_event.html"target="_blank">On Event</a></li>
+        <li><a href= "query_task.html"target="_blank">Query Task</a></li>
+        <li><a href= "simple_mapping.html"target="_blank">Simple Mapping</a></li>
+        <li><a href= "tile_layer.html"target="_blank">Tile Layer</a></li>
+      </ul>
+<!-- This script enables the display of the list containing the links to the 6 maps -->
+      <script>
+        function toggleList() {
+          const list = document.getElementById("myList");
+          list.style.display = (list.style.display === "none") ? "block" : "none";
+        }
+      </script>
+      <div id=footer style="position: fixed;bottom: 0;left: 0; width: 100%;text-align:center;">  Copyright 2025 AJ Byers | Data © Esri & OpenStreetMap contributors </div>
+  </div>
+
+<!-- created links for each page to use for later -->
+  <!-- <a href= "basemap_gallery.html"target="_blank">Basemap Gallery</a>
+  <a href= "dynamic_layers.html"target="_blank">Dynamic Layers</a>
+  <a href= "on_event.html"target="_blank">On Event</a>
+  <a href= "query_task"target="_blank">Query Task</a>
+  <a href= "simple_mapping.html"target="_blank">Simple Mapping</a>
+  <a href= "tile_layer.html"target="_blank">Tile Layer</a> -->
+
+
+</body>
+</html>
